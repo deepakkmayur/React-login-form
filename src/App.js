@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";
+import LoginForm from "./components/LoginForm";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+const adminUser={
+  email:"admin@gmail.com",
+  password:"admin@123"
 }
 
-export default App;
+const [user,setUser]=useState({name:"",email:""})
+const [error,setError]=useState("")
+
+const Login=(details)=>{console.log(details)}
+const Logout=()=>{console.log("logout");}
+
+
+  return(
+    <div className="App">
+       {(user.email!="")?(
+        <div className="welcome">
+          <h2>Welcome,<span>{user.name}</span></h2>
+          <button>Logout</button>
+        </div>
+       ):(
+        <LoginForm Login={Login} error={error}/>
+       )}
+    </div>
+  )
+}
+
+
+export default App
